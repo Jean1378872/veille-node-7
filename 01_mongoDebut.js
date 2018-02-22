@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser= require('body-parser')
 const MongoClient = require('mongodb').MongoClient // le pilote MongoDB
 const ObjectID = require('mongodb').ObjectID;
+const peupler = require('./mes_modules/peupler');
 
 const app = express();
 app.set('view engine', 'ejs'); // générateur de template 
@@ -24,6 +25,63 @@ app.get('/adresse', (req, res) => {
  res.render('gabarit.ejs', {adresse: resultat})
  })
 })
+
+app.get('/list', (req, res) => {
+ console.log('la route route get / = ' + req.url)
+ 
+ var cursor = db.collection('adresse')
+                .find().toArray(function(err, resultat){
+
+ if (err) return console.log(err)
+ // transfert du contenu vers la vue index.ejs (renders)
+ // affiche le contenu de la BD
+ res.render('gabarit.ejs', {adresse: resultat})
+ })
+})
+
+app.get('/', (req, res) => {
+ console.log('la route route get / = ' + req.url)
+ 
+ var cursor = db.collection('adresse')
+                .find().toArray(function(err, resultat){
+
+ if (err) return console.log(err)
+ // transfert du contenu vers la vue index.ejs (renders)
+ // affiche le contenu de la BD
+ res.render('gabarit.ejs', {adresse: resultat})
+ })
+})
+
+app.get('/vider', (req, res) => {
+ console.log('la route route get / = ' + req.url)
+ 
+ var cursor = db.collection('adresse')
+                .find().toArray(function(err, resultat){
+ var id = req.params.id
+ console.log(id)
+ db.collection('adresse')
+ .findOneAndDelete({"_id": ObjectID(req.params.id)}, (err, resultat) => {
+
+	if (err) return console.log(err)
+ 	res.redirect('/adresse')  // redirige vers la route qui affiche la collection
+ 	})
+ res.render('gabarit.ejs', {adresse: resultat})
+ })
+})
+
+const peupler_bd = (req,res,next) => {
+ res.resultat = peupler() 
+ console.log('début boucle') 
+ for (let elm of res.resultat)
+ {
+ db.collection('adresse').save(elm, (err, result) => {
+ if (err) return console.log(err)
+ //console.log('sauvegarder dans la BD') 
+ })
+ }
+ console.log('fin boucle') 
+ next()
+}
 /****************************************/
 
 //////////// ajouter ///////////////
@@ -71,6 +129,7 @@ console.log('req.body' + req.body)
  "_id": ObjectID(req.body['_id']), 
  nom: req.body.nom,
  prenom:req.body.prenom,
+ ville:req.body.ville,
  courriel:req.body.courriel, 
  telephone:req.body.telephone
  }
@@ -84,6 +143,7 @@ console.log('req.body' + req.body)
  var oModif = {
  nom: req.body.nom,
  prenom:req.body.prenom,
+ ville:req.body.ville,
  courriel:req.body.courriel,  
  telephone:req.body.telephone
  }
