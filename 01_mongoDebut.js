@@ -6,6 +6,7 @@ const peupler = require('./mes_modules/peupler');
 
 const app = express();
 app.set('view engine', 'ejs'); // générateur de template 
+var util = require("util");
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public')) // pour utiliser le dossier public
 
@@ -51,37 +52,29 @@ app.get('/', (req, res) => {
  res.render('gabarit.ejs', {adresse: resultat})
  })
 })
-
+///////////**** VIDER ***********/////////////////
 app.get('/vider', (req, res) => {
  console.log('la route route get / = ' + req.url)
- 
- var cursor = db.collection('adresse')
-                .find().toArray(function(err, resultat){
- var id = req.params.id
- console.log(id)
- db.collection('adresse')
- .findOneAndDelete({"_id": ObjectID(req.params.id)}, (err, resultat) => {
+
+
+db.collection('adresse').remove({}, (err, resultat) => {;
 
 	if (err) return console.log(err)
  	res.redirect('/adresse')  // redirige vers la route qui affiche la collection
- 	})
- res.render('gabarit.ejs', {adresse: resultat})
- })
 })
-
-const peupler_bd = (req,res,next) => {
- res.resultat = peupler() 
- console.log('début boucle') 
- for (let elm of res.resultat)
- {
- db.collection('adresse').save(elm, (err, result) => {
+})
+//////////////********* PEUPLER *****/////////////////
+app.get('/peupler', function(req,res) {
+ 
+ 
+ db.collection('adresse').insertMany(peupler(), (err, result) => {
  if (err) return console.log(err)
- //console.log('sauvegarder dans la BD') 
+ console.log('sauvegarder dans la BD') 
+ res.redirect('/adresse')
  })
- }
- console.log('fin boucle') 
- next()
-}
+
+
+})
 /****************************************/
 
 //////////// ajouter ///////////////
@@ -133,7 +126,7 @@ console.log('req.body' + req.body)
  courriel:req.body.courriel, 
  telephone:req.body.telephone
  }
- var util = require("util");
+ 
  console.log('util = ' + util.inspect(oModif));
  }
  else

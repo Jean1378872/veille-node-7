@@ -1,14 +1,9 @@
 
-module.exports = peupler_json;
-
 "use strict";
 
 const tableau = require('./tableaux.js');
 
 //const maximum = tableau.nom.length;
-
-console.log('max = ' + maximum);
-
 
 const maxNom = tableau.nom.length;
 const maxPrenom = tableau.prenom.length;
@@ -18,43 +13,44 @@ const maxTelephone = tableau.telephone.length;
 
 console.log('maxNom = ' + maxNom);
 
-const peupler_json = () => {
+const peupler = () => {
 
 	let position;
-	let tabNom = [];
-	let tabPrenom = [];
-	let tabVille = [];
-	let tabCourriel = [];
-	let tabTelephone = [];
+	let tabMembre = [];
+	let listeMembres;
 
 	for (let k=0 ; k<10 ; k++){
 		//let position = Math.floor(Math.random()*maximum);
 		position = Math.floor(Math.random()*maxNom);
-		let nom = tabNom[position];
+		let nom = tableau.nom[position];
+		console.log(nom);
 		//tabNom.push(tableau[position]);
 		position = Math.floor(Math.random()*maxPrenom);
-		let prenom = tabPrenom[position];
+		let prenom = tableau.prenom[position];
 		//tabPrenom.push(tableau[position]);
 		position = Math.floor(Math.random()*maxVille);
-		let ville = tabVille[position];
+		let ville = tableau.ville[position];
 		//tabVille.push(tableau[position]);
 		position = Math.floor(Math.random()*maxCourriel);
-		let courriel = tabCourriel[position];
+		let courriel = tableau.courriel[position];
 		//tabCourriel.push(tableau[position]);
 		position = Math.floor(Math.random()*maxTelephone);
-		let telephone = tabTelephone[position];
+		let telephone = tableau.telephone[position];
 		//tabTelephone.push(tableau[position]);
 		//let domaine = tableau.tabDomaine[position];
-		//tabVille.push(tableau[position]);
+		
+
+		listeMembres={
+		"nom":nom,
+		"prenom":prenom,
+		"ville":ville,
+		"courriel":courriel,
+		"telephone":telephone
+		}
+
+		tabMembre.push(listeMembres);
 	}
-	console.log(nom + " " + prenom);
-	return{
-		nom:nom,
-		prenom:prenom,
-		ville:ville,
-		courriel:courriel,
-		telephone:telephone
-	};
+	return listeMembres;
 }
 
 module.exports = peupler;
