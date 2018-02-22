@@ -11,7 +11,6 @@ app.use(express.static('public')) // pour utiliser le dossier public
 let db // variable qui contiendra le lien sur la BD
 
 
-
 ////////////////// 5-Les routes //////////////////
 app.get('/adresse', (req, res) => {
  console.log('la route route get / = ' + req.url)
