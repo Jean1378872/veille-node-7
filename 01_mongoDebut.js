@@ -125,7 +125,24 @@ req.body._id = ObjectID(req.body._id)
 })
 /*********************************************************/
 
+///////////////////////Modifier///////////////////////
 
+app.post('/chercher', (req, res) => {
+ console.log('la route route get / = ' + req.url)
+
+req.body._id = ObjectID(req.body._id)
+
+db.collection('adresse').find({$in : [{nom:req.body.recherche},{prenom:req.body.recherche}]}).toArray(function(err, resultat){
+
+			console.log('Trouvé!');
+		if (err) return console.log(err)
+
+		res.render('adresse.ejs', {adresse: resultat, ordre:"asc"})
+	})
+})
+/*********************************************************/
+
+db.bios.find( { _id: 5 } )
 
 
 MongoClient.connect('mongodb://127.0.0.1:27017', (err, database) => {
