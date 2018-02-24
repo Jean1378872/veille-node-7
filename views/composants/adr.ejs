@@ -26,8 +26,8 @@
  <th><a href='/trier/ville/<%= objOrdre.ville %>'>Ville</a></th>
  <th><a href='/trier/courriel/<%= objOrdre.courriel %>'>Courriel</a></th>
  <th><a href='/trier/telephone/<%= objOrdre.telephone %>'>Telephone</a></th>
- <th>Détruire</th> 
- <th>Modifier</th> 
+ <th style="padding:0px;">Détruire</th> 
+ <th style="padding:0px;>Modifier</th> 
  </tr>
  <% adresse.forEach(elm => {%>
  <tr id="<%= elm['_id'] %>">
@@ -37,11 +37,10 @@
  <td contenteditable="true" '><%= elm.ville %></td>
  <td contenteditable="true" '><%= elm.courriel %></td>
  <td contenteditable="true" '><%= elm.telephone %></td>
- <td style="background:linear-gradient(to bottom right, white, #ff9999);border:2px solid #ff9999;"><a href="/detruire/<%= elm._id %>" style="color:red;">Détruire</a></td>
- <td style="background:linear-gradient(to bottom right, yellow, lightgreen);border:2px solid lightgreen;"><a class='sauver' action="/modifier" style="color:green;" >Modifier</a></td>
+ <td style="background:linear-gradient(to bottom right, white, #ff9999);border:2px solid #ff9999;"><a href="/detruire/<%= elm._id %>" style="color:red;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+ <td style="background:linear-gradient(to bottom right, yellow, lightgreen);border:2px solid lightgreen;"><a class='sauver' action="/modifier" style="color:green;" ><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a></td>
  </tr>
-
  <% }) %>
 
-
  </table>
+ <script src="https://use.fontawesome.com/e64c71857d.js"></script>
