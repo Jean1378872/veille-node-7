@@ -13,9 +13,9 @@ const maxTelephone = tableau.telephone.length;
 
 console.log('maxNom = ' + maxNom);
 
-const peupler = () => {
+const peupler_json = () => {
 
-	let position;
+	var position;
 	let tabMembre = [];
 	let listeMembres;
 
@@ -53,4 +53,4 @@ const peupler = () => {
 	return listeMembres;
 }
 
-module.exports = peupler;
+module.exports = peupler_json;

@@ -4,7 +4,7 @@
 
 "use strict";
 
-   const nom = [ 
+   let nom = [ 
                "Martin",
                "Marchand",
                "Trudeau",
@@ -39,9 +39,9 @@
                "Talon",
                "Bellemarre",
                "Mercier"
-               ]
+               ];
 
-   const courriel = [
+   let courriel = [
                   "hotmail.com",
                   "vedeotron.com",
                   "gmail.com",
@@ -52,9 +52,9 @@
                   "bell.ca",
                   "umontreal.ca",
                   "skillscanada.ca",
-                  "inforoutefpt.com"]
+                  "inforoutefpt.com"];
 
-   const ville = [
+   let ville = [
             "Montréal",
             "Québec",
             "Saskatshewan",
@@ -66,9 +66,9 @@
             "Gaspé",
             "Hudson",
             "New York"
-            ]
+            ];
 
-   const prenom = [
+   let prenom = [
                   "Luc",
                   "Éric",
                   "François",
@@ -107,8 +107,8 @@
                   "Coralie",
                   "Pénéloppe",
                   "Charlotte"
-                    ]
-   const telephone = [
+                    ];
+   let telephone = [
                   "(125) 546-4478",
                   "(671) 925-1352",
                   "(795) 376-5466",
@@ -122,13 +122,11 @@
                   "(495) 621-5297",
                   "(685) 186-7297",
                   "(697) 886-0439"
-                    ]
-const tableaux = {
-      nom:nom,
-      prenom:prenom,
-      courriel:courriel,
-      ville:ville,
-      telephone:telephone
-}
-module.exports = tableaux;
+                    ];
+
+module.exports.nom = nom;
+module.exports.courriel = courriel;
+module.exports.ville = ville;
+module.exports.prenom = prenom;
+module.exports.telephone = telephone;
 //module.exports.tabPrenom = tabPrenom;

@@ -54,32 +54,33 @@ app.get('/', (req, res) => {
 })
 ///////////**** VIDER ***********/////////////////
 app.get('/vider', (req, res) => {
- console.log('la route route get / = ' + req.url)
+    db.collection('adresse').drop((err, resultat) => {
+        if (err) return console.log(err)
+            res.redirect('/adresse');
+    });
 
-
-db.collection('adresse').remove({}, (err, resultat) => {;
-
-	if (err) return console.log(err)
- 	res.redirect('/adresse')  // redirige vers la route qui affiche la collection
-})
 })
 //////////////********* PEUPLER *****/////////////////
 app.get('/peupler', function(req,res) {
+
+	let remplir = require("./mes_modules/peupler/index.js");
+	let tableauPeupler = remplir();
  
  
- db.collection('adresse').insertMany(peupler(), (err, result) => {
+ db.collection('adresse').insertMany(tableauPeupler, (err, result) => {
  if (err) return console.log(err)
- console.log('sauvegarder dans la BD') 
- res.redirect('/adresse')
+ 	remplir = "";
+ 	console.log('sauvegarder dans la BD');
+ 	res.redirect('/adresse')
  })
 
 
 })
 /****************************************/
 
-//////////// ajouter ///////////////
+//////////// AJOUTER ///////////////
 app.post('/ajouter', (req, res) => {
- db.collection('adresse').save(req.body, (err, result) => {
+ db.collection('adresse').insert(req.body, (err, result) => {
  if (err) return console.log(err)
  console.log('sauvegarder dans la BD')
  res.redirect('/adresse')
@@ -114,34 +115,7 @@ let cle = req.params.cle
 
 ///////////////////////Modifier///////////////////////
 app.post('/modifier', (req, res) => {
-console.log('req.body' + req.body)
- if (req.body['_id'] != "")
- { 
- console.log('sauvegarde') 
- var oModif = {
- "_id": ObjectID(req.body['_id']), 
- nom: req.body.nom,
- prenom:req.body.prenom,
- ville:req.body.ville,
- courriel:req.body.courriel, 
- telephone:req.body.telephone
- }
- 
- console.log('util = ' + util.inspect(oModif));
- }
- else
- {
- console.log('insert')
- console.log(req.body)
- var oModif = {
- nom: req.body.nom,
- prenom:req.body.prenom,
- ville:req.body.ville,
- courriel:req.body.courriel,  
- telephone:req.body.telephone
- }
- }
- db.collection('adresse').save(oModif, (err, result) => {
+ db.collection('adresse').save(req.body, (err, result) => {
  if (err) return console.log(err)
  console.log('sauvegarder dans la BD')
  res.redirect('/adresse')
