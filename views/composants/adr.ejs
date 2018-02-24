@@ -38,7 +38,18 @@
  <td contenteditable="true" '><%= elm.courriel %></td>
  <td contenteditable="true" '><%= elm.telephone %></td>
  <td style="background:linear-gradient(to bottom right, red, black);border:2px solid red;"><a href="/detruire/<%= elm._id %>" style="color:white;">Détruire</a></td>
- <td style="background:linear-gradient(to bottom right, yellow, green);border:2px solid green;"><a class='sauver' href="/modifier" style="color:black;" >Modifier</a></td>
+ <td style="background:linear-gradient(to bottom right, yellow, green);border:2px solid green;"><a class='sauver' action="/modifier" style="color:black;" >Modifier</a></td>
  </tr>
  <% }) %>
+
+<form style="display:none;" class='mon_formulaire' action="/modifier" name='mon_formulaire' id='mon_formulaire' method="POST" >
+ <input style="display:none;" type = "hidden" placeholder="id" name = "_id" value=''> 
+ <input style="display:none;" type = "text" placeholder="Nom" name = "nom"> 
+ <input style="display:none;" type = "text" placeholder="Prénom" name = "prenom">
+ <input style="display:none;" type = "text" placeholder="Ville" name = "ville">
+ <input style="display:none;" type = "text" placeholder="Courriel" name = "courriel"> 
+ <input style="display:none;" type = "text" placeholder="Téléphone" name = "telephone">
+ <button style="display:none;" type="submit" value='Modifier'>Submit</button>
+</form>
+
  </table>

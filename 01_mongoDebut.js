@@ -106,7 +106,7 @@ let cle = req.params.cle
  let ordre = (req.params.ordre == 'asc' ? 1 : -1)
  let cursor = db.collection('adresse').find().sort(cle,ordre).toArray(function(err, resultat){
  ordre = (req.params.ordre == 'asc' ? 'desc' : 'asc')
- res.render('gabarit.ejs', {adresse: resultat, cle, ordre })
+ res.render('adresse.ejs', {adresse: resultat, cle, ordre })
 })
 
 })
@@ -116,7 +116,7 @@ let cle = req.params.cle
 app.post('/modifier', (req, res) => {
  console.log('la route route get / = ' + req.url)
 
-req.body = ObjectID(req.body._id)
+req.body._id = ObjectID(req.body._id)
 
  db.collection('adresse').save(req.body, (err, result) => { 
  	if (err) return console.log(err)
