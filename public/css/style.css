@@ -1,10 +1,10 @@
 
 @font-face {
- font-family: "Norwester";
- src: url("/norwester-v1.2/webfonts/norwester.woff") format("woff")
+ font-family: "Raleway";
+ src: url("raleway-v12-latin/raleway-v12-latin-500.woff") format("woff")
 }
 *{
-	font-family: "Norwester";
+	font-family: "Raleway";
 }
 body{
 	background-color: #141452;
@@ -16,7 +16,7 @@ head{
 }
 form,section,footer,nav{
 	text-align: center;
-	margin-left: 50px;
+	margin-left: -20px;
 }
 input{
 	background: linear-gradient(to bottom right, #0f0f3d, black);
@@ -24,7 +24,7 @@ input{
 	border: 2px solid #4d4dff;
 }
 table{
-	margin-left: 350px;
+	margin-left: 240px;
 	margin-top: 70px;
 	text-align: center;
 }
