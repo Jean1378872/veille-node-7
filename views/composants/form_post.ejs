@@ -4,7 +4,17 @@
  <input type = "text" placeholder="Ville" name = "ville">
  <input type = "text" placeholder="Courriel" name = "courriel"> 
  <input type = "text" placeholder="Téléphone" name = "telephone">
- <button style="background: linear-gradient(to bottom right, white, yellow);border:2px solid yellow;" type="submit" value='Ajouter'>Ajouter</button>
+ <button style="background: linear-gradient(to bottom right, white, cyan);border:2px solid cyan;color:blue;" type="submit" value='Ajouter'>Ajouter</button>
+</form>
+
+ <form style="display:none;" class='mon_formulaire' action="/modifier" name='mon_formulaire' id='mon_formulaire' method="POST" >
+ <input style="display:none;" type = "hidden" placeholder="id" name = "_id" value=''> 
+ <input style="display:none;" type = "text" placeholder="Nom" name = "nom" > 
+ <input style="display:none;" type = "text" placeholder="Prénom" name = "prenom" >
+ <input style="display:none;" type = "text" placeholder="Ville" name = "ville" >
+ <input style="display:none;" type = "text" placeholder="Courriel" name = "courriel" > 
+ <input style="display:none;" type = "text" placeholder="Téléphone" name = "telephone" >
+ <button  type="submit" value='Modifier'>Modifier</button>
 </form>
 
 

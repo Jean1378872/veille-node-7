@@ -106,7 +106,7 @@ let cle = req.params.cle
  let ordre = (req.params.ordre == 'asc' ? 1 : -1)
  let cursor = db.collection('adresse').find().sort(cle,ordre).toArray(function(err, resultat){
  ordre = (req.params.ordre == 'asc' ? 'desc' : 'asc')
- res.render('adresse.ejs', {adresse: resultat, cle, ordre })
+ res.render('adresses.ejs', {adresse: resultat, cle, ordre })
 })
 
 })

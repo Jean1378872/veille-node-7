@@ -1,12 +1,27 @@
-body{
-	background-color: #ffe6b3; 
+
+@font-face {
+ font-family: "Norwester";
+ src: url("/norwester-v1.2/webfonts/norwester.woff") format("woff")
 }
+*{
+	font-family: "Norwester";
+}
+body{
+	background-color:#e6f9ff;
+}
+
 form,section,footer,nav{
 	text-align: center;
 	margin-left: 100px;
 }
+input{
+	background-color: #00aaff;
+	color:white;
+	border: 2px solid #00ace6;
+}
 table{
-	margin-left: 700px;
+	margin-left: 580px;
+	margin-top: 70px;
 	text-align: center;
 }
 .tableau{
