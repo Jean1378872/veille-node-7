@@ -7,20 +7,24 @@
 	font-family: "Norwester";
 }
 body{
-	background-color:#e6f9ff;
+	background-color: #141452;
+	color:white;
+	font-size: 24px;
 }
-
+head{
+	color: white;
+}
 form,section,footer,nav{
 	text-align: center;
-	margin-left: 100px;
+	margin-left: 50px;
 }
 input{
-	background-color: #00aaff;
+	background: linear-gradient(to bottom right, #0f0f3d, black);
 	color:white;
-	border: 2px solid #00ace6;
+	border: 2px solid #4d4dff;
 }
 table{
-	margin-left: 580px;
+	margin-left: 350px;
 	margin-top: 70px;
 	text-align: center;
 }
@@ -28,10 +32,21 @@ table{
 	border:collapse;
 }
 td,th{
-	border: 2px solid black;
+	border: 2px solid white;
 	padding: 5px;
 }
 a{
 	text-decoration: none;
-	color:black;
+}
+a:visited{
+	text-decoration: none;
+	color:white;
+}
+a:link{
+	text-decoration: none;
+	color:white;
+}
+a:active{
+	text-decoration: none;
+	color:white;
 }
