@@ -23,7 +23,7 @@ app.get('/adresse', (req, res) => {
  if (err) return console.log(err)
  // transfert du contenu vers la vue index.ejs (renders)
  // affiche le contenu de la BD
- res.render('gabarit.ejs', {adresse: resultat})
+ res.render('adresses.ejs', {adresse: resultat})
  })
 })
 
@@ -80,7 +80,7 @@ app.post('/ajouter', (req, res) => {
  db.collection('adresse').insert(req.body, (err, result) => {
  if (err) return console.log(err)
  console.log('sauvegarder dans la BD')
- res.redirect('/list');
+ res.redirect('/adresse');
 
 
  })
@@ -90,7 +90,7 @@ app.post('/ajouter', (req, res) => {
 /////////////////////// Détruire ////////////////////////
 app.get('/detruire/:id', (req, res) => {
  var id = req.params.id
- console.log(id)
+
  db.collection('adresse')
  .findOneAndDelete({"_id": ObjectID(req.params.id)}, (err, resultat) => {
 
@@ -114,13 +114,14 @@ let cle = req.params.cle
 
 ///////////////////////Modifier///////////////////////
 app.post('/modifier', (req, res) => {
+ console.log('la route route get / = ' + req.url)
 
-req.body._id = ObjectID(req.body._id)
+req.body = ObjectID(req.body._id)
 
  db.collection('adresse').save(req.body, (err, result) => { 
  	if (err) return console.log(err)
  	 console.log('Élément Modifié') 
- 	res.redirect('/list') })
+ 	res.redirect('/adresse') })
 })
 /*********************************************************/
 
