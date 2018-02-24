@@ -37,8 +37,8 @@
  <td contenteditable="true" '><%= elm.ville %></td>
  <td contenteditable="true" '><%= elm.courriel %></td>
  <td contenteditable="true" '><%= elm.telephone %></td>
- <td style="background-color:red;"><a href="/detruire/<%= elm._id %>" style="color:white;">detruire</a></td>
- <td style="background-color:green;"><a class='sauver' href="/modifier" style="color:white;" >Modifier</a></td>
+ <td style="background:linear-gradient(to bottom right, red, black);border:2px solid red;"><a href="/detruire/<%= elm._id %>" style="color:white;">Détruire</a></td>
+ <td style="background:linear-gradient(to bottom right, yellow, green);border:2px solid green;"><a class='sauver' href="/modifier" style="color:black;" >Modifier</a></td>
  </tr>
  <% }) %>
  </table>

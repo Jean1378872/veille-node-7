@@ -43,15 +43,11 @@ app.get('/list', (req, res) => {
 app.get('/', (req, res) => {
  console.log('la route route get / = ' + req.url)
  
- var cursor = db.collection('adresse')
-                .find().toArray(function(err, resultat){
+ // affiche l'Accueil'
+ res.render('accueil.ejs');
 
- if (err) return console.log(err)
- // transfert du contenu vers la vue index.ejs (renders)
- // affiche le contenu de la BD
- res.render('gabarit.ejs', {adresse: resultat})
- })
 })
+
 ///////////**** VIDER ***********/////////////////
 app.get('/vider', (req, res) => {
     db.collection('adresse').drop((err, resultat) => {
@@ -60,18 +56,17 @@ app.get('/vider', (req, res) => {
     });
 
 })
+
 //////////////********* PEUPLER *****/////////////////
 app.get('/peupler', function(req,res) {
 
-	let remplir = require("./mes_modules/peupler/index.js");
-	let tableauPeupler = remplir();
+	let tableauPeupler = peupler();
  
  
- db.collection('adresse').insertMany(tableauPeupler, (err, result) => {
+ db.collection('adresse').insert(tableauPeupler, (err, result) => {
  if (err) return console.log(err)
  	remplir = "";
- 	console.log('sauvegarder dans la BD');
- 	res.redirect('/adresse')
+ 	res.redirect('/adresse');
  })
 
 
@@ -80,10 +75,14 @@ app.get('/peupler', function(req,res) {
 
 //////////// AJOUTER ///////////////
 app.post('/ajouter', (req, res) => {
+
+
  db.collection('adresse').insert(req.body, (err, result) => {
  if (err) return console.log(err)
  console.log('sauvegarder dans la BD')
- res.redirect('/adresse')
+ res.redirect('/list');
+
+
  })
 })
 /*********************************/
@@ -115,11 +114,13 @@ let cle = req.params.cle
 
 ///////////////////////Modifier///////////////////////
 app.post('/modifier', (req, res) => {
- db.collection('adresse').save(req.body, (err, result) => {
- if (err) return console.log(err)
- console.log('sauvegarder dans la BD')
- res.redirect('/adresse')
- })
+
+req.body._id = ObjectID(req.body._id)
+
+ db.collection('adresse').save(req.body, (err, result) => { 
+ 	if (err) return console.log(err)
+ 	 console.log('Élément Modifié') 
+ 	res.redirect('/list') })
 })
 /*********************************************************/
 

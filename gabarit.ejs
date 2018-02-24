@@ -1,7 +1,26 @@
 <%- include('composants/head') %> 
 <body>
  <%- include('composants/entete') %>
- <%- include('composants/form_post') %>
+ <form action="/ajouter" method="POST" >
+ <input type = "hidden" placeholder="id" name = "_id" value=''> 
+ <input type = "text" placeholder="Nom" name = "nom"> 
+ <input type = "text" placeholder="Prénom" name = "prenom">
+ <input type = "text" placeholder="Ville" name = "ville">
+ <input type = "text" placeholder="Courriel" name = "courriel"> 
+ <input type = "text" placeholder="Téléphone" name = "telephone">
+ <input type="submit" value='Ajouter'>
+</form>
+
+
+  <form style="display:none;" class='mon_formulaire' action="/modifier" name='mon_formulaire' id='mon_formulaire' method="POST" >
+ <input type = "hidden" placeholder="id" name = "_id" value=''> 
+ <input type = "text" placeholder="Nom" name = "nom"> 
+ <input type = "text" placeholder="Prénom" name = "prenom">
+ <input type = "text" placeholder="Ville" name = "ville">
+ <input type = "text" placeholder="Courriel" name = "courriel"> 
+ <input type = "text" placeholder="Téléphone" name = "telephone">
+ <input type="submit" value='Modifier'>
+</form>
  <%- include('composants/adr') %>
  <%- include('composants/footer') %>
 </body>
@@ -23,7 +42,8 @@
  let id = laLigne.children[0].innerHTML
  let nom = laLigne.children[1].innerHTML
  let prenom = laLigne.children[2].innerHTML
- let telephone = laLigne.children[3].innerHTML
+ let courriel = laLigne.children[3].innerHTML
+ let telephone = laLigne.children[4].innerHTML
 
 let elmForm = document.getElementById('mon_formulaire')
  console.log(elmForm.tagName)
@@ -31,7 +51,8 @@ let elmForm = document.getElementById('mon_formulaire')
  elmInput[0].value = id
  elmInput[1].value = nom
  elmInput[2].value = prenom
- elmInput[3].value = telephone
+ elmInput[3].value = courriel
+ elmInput[4].value = telephone
 
  elmForm.submit()
 
